@@ -1,0 +1,37 @@
+{
+  "name": "job-search-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon"
+  },
+  "author": "Mohamed Karim Balla",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.7.0",
+    "axios": "^1.6.2",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "he": "^1.2.0",
+    "helmet": "^7.1.0",
+    "json-web-token": "^3.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^5.9.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "prisma": "^5.7.0"
+  }
+}

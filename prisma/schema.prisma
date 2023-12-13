@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+    id      String   @id @default(auto()) @map("_id") @db.ObjectId
+    email   String   @unique
+    fullName    String
+    password String
+    verifiedAt DateTime?
+    emailToken String?
+    roles String?
+    resumes Resume[]
+    Profile Profile[]
+    savedJobs Saved_jobs[]
+    createdAt DateTime @default(now()) @map("createdAt")
+    updatedAt DateTime @updatedAt
+}
+
+
+model Resume {
+    id      String   @id @default(auto()) @map("_id") @db.ObjectId
+    resume String
+    userId   String    @db.ObjectId
+    user     User    @relation(fields: [userId], references: [id])
+    createdAt DateTime @default(now()) @map("createdAt")
+    updatedAt DateTime @updatedAt
+}
+
+
+model Profile {
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  bio      String?
+  avatar   String?
+  country String?
+  city String?
+  userId   String  @db.ObjectId
+  user     User    @relation(fields: [userId], references: [id])
+}
+
+model Saved_jobs {
+    jobId      String   @id @map("_id") @db.ObjectId
+    userId   String    @db.ObjectId
+    user     User    @relation(fields: [userId], references: [id])
+    createdAt DateTime @default(now()) @map("createdAt")
+    updatedAt DateTime @updatedAt
+}
+
+
+
