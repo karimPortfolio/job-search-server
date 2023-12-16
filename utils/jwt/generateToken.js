@@ -1,10 +1,11 @@
 
 const jwt = require("jsonwebtoken");
 
-exports.registerToken = async (userInformation) => {
+exports.generateToken = async (userInformation) => {
     try
     {
         const data = {
+            id: userInformation._id,
             fullName: userInformation.fullName,
             email: userInformation.email,
         }
@@ -15,7 +16,6 @@ exports.registerToken = async (userInformation) => {
                 expiresIn:"30s"
             }
         );
-        console.log(token);
         return token;
     }
     catch (err)

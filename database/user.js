@@ -3,32 +3,28 @@ const prisma = require("./prisma");
 
 
 exports.createNewUser = async (user) => {
-    try
-    {
+    try {
         const new_user = await prisma.user.create({
-            data:{
+            data: {
                 fullName: user.fullName,
                 email: user.email,
                 password: user.hashedPassword,
-                role: user.role,
+                roles: user.role,
             }
         });
         return new_user;
     }
-    catch(err)
-    {
+    catch (err) {
         console.log(err);
     }
 }
 
-exports.getUserWithEmail = async (email) => {
-    try
-    {
-        const user = await prisma.user.findUnique({where:{email:email}});
+exports.getUserByEmail = async (email) => {
+    try {
+        const user = await prisma.user.findUnique({ where: { email: email } });
         return user;
     }
-    catch (err)
-    {
+    catch (err) {
         console.log(err);
     }
 }

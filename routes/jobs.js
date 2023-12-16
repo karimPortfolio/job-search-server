@@ -1,10 +1,10 @@
 const express = require('express');
 const Route = express.Router();
-const jobsController = require('../controllers/jobs');
-const validation = require('../middlewares/valdation');
+const { getMatchedJobs, recentJobs } = require('../controllers/jobs');
+const { validateSearchInputs } = require('../middlewares/validation/searchValidation');
 
-Route.post('/', validation.validateSearchInputs, jobsController.getMatchedJobs);
-Route.get('/', jobsController.recentJobs);
+Route.post('/', validateSearchInputs, getMatchedJobs);
+Route.get('/', recentJobs);
 
 module.exports = Route;
 
