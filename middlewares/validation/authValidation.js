@@ -33,7 +33,7 @@ exports.validateUserCredentialsRegister = (req, res, next) => {
     if (!validator.isStrongPassword(password, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1 })) {
         return res.status(400).json({
             type: 'failed',
-            element:"name",
+            element:"password",
             message: 'Password must be at least 8 characters long and include uppercase letters, lowercase letters, numbers, and special characters.',
         });
     }

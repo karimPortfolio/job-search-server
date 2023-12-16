@@ -8,6 +8,7 @@ exports.generateToken = async (userInformation) => {
             id: userInformation._id,
             fullName: userInformation.fullName,
             email: userInformation.email,
+            role: userInformation.roles,
         }
         const token = await jwt.sign(
             data,
