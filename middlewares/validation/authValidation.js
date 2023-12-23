@@ -10,7 +10,7 @@ function filterHtmlTags(input) {
 exports.validateUserCredentialsRegister = (req, res, next) => {
     if (!req.body.fullName && !req.body.email && !req.body.password && !req.body.role)
     {
-        return res.status(400).json({type:'failed', element:"all", message:'Please provide all required fields.'});
+        return res.status(401).json({type:'failed', element:"all", message:'Please provide all required fields.'});
     }
 
     //remove html tags

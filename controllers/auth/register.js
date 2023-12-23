@@ -12,7 +12,7 @@ const register = async (req, res) => {
         //check if the email already exists
         const user = await getUserByEmail(email);
         if (user) {
-            return res.status(400).json({ type: 'failed', message: 'Email has been already taken.' });
+            return res.status(409).json({ type: 'failed', message: 'Email has been already taken.' });
         }
         //hash user password
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -25,7 +25,7 @@ const register = async (req, res) => {
         //create new user account
         const new_user = await createNewUser(user_credentials);
         if (!new_user) {
-            return res.status(400).json({ type: 'failed', message: 'Something went wrong while creating account.' });
+            return res.status(401).json({ type: 'failed', message: 'Something went wrong while creating account.' });
         }
         //create token for auth
         const token = await generateToken(new_user);

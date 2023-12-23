@@ -10,13 +10,13 @@ const login = async (req, res) => {
     const { email, password } = req.body;
     try {
         const loggedUser = await getUserByEmail(email);
-        if (!loggedUser) return res.status(400).json({ type: 'failed', message: "Email or password doesn't matched." });
+        if (!loggedUser) return res.status(401).json({ type: 'failed', message: "Email or password doesn't matched." });
 
         const verifyPassword = await bcrypt.compare(password, loggedUser.password);
-        if (!verifyPassword) return res.status(400).json({ type: 'failed', message: "Email or password doesn't matched." });
+        if (!verifyPassword) return res.status(401).json({ type: 'failed', message: "Email or password doesn't matched." });
 
         const token = await generateToken(loggedUser);
-        if (!token) return res.status(400).json({ type: 'failed', message: 'Something went wrong try again later.' });
+        if (!token) return res.status(401).json({ type: 'failed', message: 'Something went wrong try again later.' });
 
         const userData = {
             id: loggedUser._id,
