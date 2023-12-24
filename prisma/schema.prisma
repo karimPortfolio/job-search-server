@@ -29,7 +29,9 @@ model User {
 
 model Resume {
     id      String   @id @default(auto()) @map("_id") @db.ObjectId
-    resume String
+    name String
+    data Bytes
+    contentType String
     userId   String    @db.ObjectId
     user     User    @relation(fields: [userId], references: [id])
     createdAt DateTime @default(now()) @map("createdAt")

@@ -13,6 +13,7 @@ const AppConfig = require('./config/AppConfig');
 //routes imports
 const jobsRoutes = require('./routes/jobs');
 const authRoutes = require('./routes/auth/auth');
+const uploadRoutes = require('./routes/uploads');
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.use(cors({
 //routes
 app.use('/jobs', jobsRoutes);
 app.use('/auth', authRoutes);
+app.use('/upload', uploadRoutes);
 
 //server config
 app.listen(AppConfig.port, () => {

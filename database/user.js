@@ -16,6 +16,7 @@ exports.createNewUser = async (user) => {
     }
     catch (err) {
         console.log(err);
+        return null;
     }
 }
 
@@ -26,6 +27,7 @@ exports.getUserByEmail = async (email) => {
     }
     catch (err) {
         console.log(err);
+        return null;
     }
 }
 
