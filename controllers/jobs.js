@@ -27,7 +27,11 @@ exports.getMatchedJobs = async (req, res) => {
         {
             return res.status(response.status).json({message:'Something went wrong!'});
         }
-        res.status(200).json(response.data.data);
+        res.status(200).json({
+            search: searchValue,
+            location: location,
+            jobs:response.data.data
+        });
     }
     catch (err)
     {
