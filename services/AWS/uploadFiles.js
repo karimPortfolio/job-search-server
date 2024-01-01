@@ -6,7 +6,7 @@ const uploadFiles = async (key, body) => {
     {
         const params = {
             Bucket: process.env.AWS_BUCKET_NAME,
-            Key:`resumes/${key}`,
+            Key:key,
             Body:body
         }
         const data = await S3.upload(params).promise();
