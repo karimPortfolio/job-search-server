@@ -8,11 +8,12 @@ exports.addResume = async (req, res) => {
     try
     {
         //upload file to AWS cloud S3 storage
-        const newUpload = await uploadFiles(file.originalname, file.buffer);
+        const key = `resumes/${file.originalname}`;
+        const newUpload = await uploadFiles(key, file.buffer);
         if (!newUpload) return res.status(500).json({type:'failed', message:'Something went wrong while uploading resume.'});
         //store resume info in database
         const resumeInfo = {
-            key: `resumes/${newUpload.Key}`,
+            key: newUpload.Key,
             buffer: file.buffer,
             contentType: file.mimetype
         };
