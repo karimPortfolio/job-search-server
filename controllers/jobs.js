@@ -5,7 +5,14 @@ const axios = require('axios');
 
 //Get matched jobs according to user desires
 exports.getMatchedJobs = async (req, res) => {
-    const {searchValue, location} = req.body;
+    const {
+        searchValue,
+        location,
+        filters,
+    } = req.body;
+
+    const page = parseInt(req.query.page);
+
     try
     {
         const url = `${RapidApiConfig.rapidApiUrl}/search`;
@@ -14,8 +21,8 @@ exports.getMatchedJobs = async (req, res) => {
             url: url,
             params: {
                 query: location !== '' ? `${searchValue+ ' in '+location}` : searchValue,
-                page: '1',
-                num_pages: '5'
+                page: page,
+                num_pages: '2'
             },
             headers: {
                 'X-RapidAPI-Key': RapidApiConfig.rapidApiKey,
